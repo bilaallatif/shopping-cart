@@ -11,6 +11,7 @@ export const ElementDiv = styled.div((props) => ({
 
 const Title = styled(ElementDiv)({
   flex: 1,
+  minWidth: "20%",
 
   fontSize: "5rem",
   fontWeight: "Bold",
@@ -35,9 +36,9 @@ const NavBar = styled(ElementDiv)({
 
 const BasketArea = styled(ElementDiv)({
   flex: 1,
+  minWidth: "20%",
 
-  gap: "3rem",
-
+  gap: "1.5rem",
   fontSize: "3rem",
   fontWeight: 200,
 });
