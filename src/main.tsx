@@ -16,6 +16,10 @@ const theme: DefaultTheme = {
     green: "#829460",
     white: "#EEEEEE",
   },
+  fonts: {
+    primary: "Playwrite DK Loopet, cursive",
+    secondary: "Roboto, sans-serif",
+  },
 };
 
 createRoot(document.getElementById("root")!).render(

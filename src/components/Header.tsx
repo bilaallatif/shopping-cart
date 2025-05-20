@@ -1,28 +1,64 @@
 import styled from "styled-components";
 import type { BaseProps } from "../main.tsx";
 
-const Title = styled.div((props) => ({
-  flex: 1,
-
+export const ElementDiv = styled.div((props) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
 
+  color: props.theme.colours.green,
+}));
+
+const Title = styled(ElementDiv)({
+  flex: 1,
+
   fontSize: "5rem",
   fontWeight: "Bold",
-  color: props.theme.colours.green,
-  // border: "1px solid black",
+});
+
+const NavBarElement = styled.div((props) => ({
+  transition: "color 0.1s ease-in-out",
+
+  "&:hover": {
+    color: props.theme.colours.red,
+  },
 }));
+
+const NavBar = styled(ElementDiv)({
+  flex: 7,
+
+  gap: "5rem",
+
+  fontSize: "2rem",
+  fontWeight: 200,
+});
+
+const BasketArea = styled(ElementDiv)({
+  flex: 1,
+
+  gap: "3rem",
+
+  fontSize: "3rem",
+  fontWeight: 200,
+});
 
 const Header = ({ className }: BaseProps) => {
   return (
     <div className={className}>
       <Title>Pick'd</Title>
-      <div style={{ flex: 7 }}></div>
-      <div style={{ flex: 1 }}></div>
+      <NavBar>
+        <NavBarElement>Home</NavBarElement>
+        <NavBarElement>Shop</NavBarElement>
+        <NavBarElement>Contact</NavBarElement>
+      </NavBar>
+      <BasketArea>
+        <NavBarElement>Basket</NavBarElement>
+        <NavBarElement>Search</NavBarElement>
+      </BasketArea>
     </div>
   );
 };
+
 export const StyledHeader = styled(Header)((props) => ({
   flex: 1,
 
