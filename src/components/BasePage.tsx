@@ -2,12 +2,13 @@ import type { BaseProps } from "../main.tsx";
 import { styled } from "styled-components";
 import { StyledHeader } from "./Header.tsx";
 import { StyledFooter } from "./Footer.tsx";
+import { StyledContent } from "./Content.tsx";
 
 const BasePage = ({ className }: BaseProps) => {
   return (
     <div className={className}>
       <StyledHeader></StyledHeader>
-      <div style={{ flex: 7 }}></div>
+      <StyledContent></StyledContent>
       <StyledFooter></StyledFooter>
     </div>
   );

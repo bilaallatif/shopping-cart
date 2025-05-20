@@ -30,7 +30,7 @@ const NavBar = styled(ElementDiv)({
   gap: "5rem",
 
   fontSize: "2rem",
-  fontWeight: 200,
+  fontWeight: 400,
 });
 
 const BasketArea = styled(ElementDiv)({
