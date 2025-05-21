@@ -1,5 +1,6 @@
 import type { BaseProps } from "../main.tsx";
 import { styled } from "styled-components";
+import * as React from "react";
 // import apple from "../assets/apple.jpg";
 
 const Banner = styled.div((props) => ({
@@ -63,26 +64,32 @@ const Interactions = styled.div((props) => ({
   color: props.theme.colours.green,
 }));
 
-const Counter = styled(({ className }: BaseProps) => {
-  return <div className={className}>0</div>;
+interface CounterProps extends BaseProps {
+  count: number;
+}
+
+const Counter = styled(({ className, count }: CounterProps) => {
+  return <div className={className}>{count}</div>;
 })((props) => ({
   flex: 1.75,
   height: "100%",
-  backgroundColor: props.theme.colours.brown,
 
+  boxSizing: "border-box",
+  border: "3px solid",
+  borderColor: props.theme.colours.brown,
   borderRadius: "5%",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
 }));
 
-const QuantityModifier = styled(({ className, children }: BaseProps) => {
-  return <div className={className}>{children}</div>;
-})((props) => ({
+const QuantityModifier = styled.button((props) => ({
   flex: 1,
   height: "100%",
-  backgroundColor: props.theme.colours.brown,
 
+  boxSizing: "border-box",
+  border: "3px solid",
+  borderColor: props.theme.colours.brown,
   borderRadius: "5%",
   display: "flex",
   justifyContent: "center",
@@ -110,44 +117,82 @@ const BuyButton = styled.button((props) => ({
   fontWeight: 600,
 }));
 
-const Item = () => {
+interface ItemProps extends BaseProps {
+  addCount: (count: number) => void;
+}
+
+const Item = ({ addCount }: ItemProps) => {
+  const [internalCount, setInternalCount] = React.useState(0);
+
   return (
     <Card>
       <Visual></Visual>
       <Interactions>
         <QuantityControl>
-          <QuantityModifier>-</QuantityModifier>
-          <Counter></Counter>
-          <QuantityModifier>+</QuantityModifier>
+          <QuantityModifier
+            onClick={() => {
+              setInternalCount(Math.max(0, internalCount - 1));
+            }}
+          >
+            -
+          </QuantityModifier>
+          <Counter count={internalCount}></Counter>
+          <QuantityModifier
+            onClick={() => {
+              setInternalCount(internalCount + 1);
+            }}
+          >
+            +
+          </QuantityModifier>
         </QuantityControl>
-        <BuyButton>Buy</BuyButton>
+        <BuyButton
+          onClick={() => {
+            addCount(internalCount);
+            setInternalCount(0);
+          }}
+        >
+          Add
+        </BuyButton>
       </Interactions>
     </Card>
   );
 };
 
-const Content = ({ className }: BaseProps) => {
-  const items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+interface ContentProps extends BaseProps {
+  items: number[];
+  setItems: React.Dispatch<React.SetStateAction<number[]>>;
+}
 
-  return (
-    <div className={className}>
-      <Banner>
-        <div>Welcome to Pick'd — Where Fresh Apples Meet Family Tradition.</div>
-        <div>Hand-Picked, Sun-Kissed, and Grown with Love.</div>
-      </Banner>
-      <ItemsList>
-        {items.map((_value, index) => (
-          <Item key={index}></Item>
-        ))}
-      </ItemsList>
-      <Banner>
-        <div>Warning: May Cause Spontaneous Apple-Picking Joy.</div>
-      </Banner>
-    </div>
-  );
-};
-
-export const StyledContent = styled(Content)({
+export const Content = styled(
+  ({ className, items, setItems }: ContentProps) => {
+    return (
+      <div className={className}>
+        <Banner>
+          <div>
+            Welcome to Pick'd — Where Fresh Apples Meet Family Tradition.
+          </div>
+          <div>Hand-Picked, Sun-Kissed, and Grown with Love.</div>
+        </Banner>
+        <ItemsList>
+          {items.map((_value, index) => (
+            <Item
+              key={index}
+              addCount={(added: number) => {
+                const newItems = [...items];
+                newItems[index] += added;
+                console.log(newItems);
+                setItems(newItems);
+              }}
+            ></Item>
+          ))}
+        </ItemsList>
+        <Banner>
+          <div>Warning: May Cause Spontaneous Apple-Picking Joy.</div>
+        </Banner>
+      </div>
+    );
+  },
+)({
   flex: 10,
 
   display: "flex",

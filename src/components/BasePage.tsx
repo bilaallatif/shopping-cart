@@ -2,13 +2,16 @@ import type { BaseProps } from "../main.tsx";
 import { styled } from "styled-components";
 import { StyledHeader } from "./Header.tsx";
 import { StyledFooter } from "./Footer.tsx";
-import { StyledContent } from "./Content.tsx";
+import { Content } from "./Content.tsx";
+import { useState } from "react";
 
 const BasePage = ({ className }: BaseProps) => {
+  const [items, setItems] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+
   return (
     <div className={className}>
       <StyledHeader></StyledHeader>
-      <StyledContent></StyledContent>
+      <Content items={items} setItems={setItems}></Content>
       <StyledFooter></StyledFooter>
     </div>
   );
