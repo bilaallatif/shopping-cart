@@ -10,7 +10,11 @@ const BasePage = ({ className }: BaseProps) => {
 
   return (
     <div className={className}>
-      <StyledHeader></StyledHeader>
+      <StyledHeader
+        count={items.reduce(
+          (previousValue, currentValue) => previousValue + currentValue,
+        )}
+      ></StyledHeader>
       <Content items={items} setItems={setItems}></Content>
       <StyledFooter></StyledFooter>
     </div>

@@ -1,38 +1,31 @@
 import styled from "styled-components";
 import type { BaseProps } from "../main.tsx";
+import { IoIosBasket } from "react-icons/io";
 
 export const ElementDiv = styled.div((props) => ({
   display: "flex",
   alignItems: "center",
-  justifyContent: "center",
 
   color: props.theme.colours.green,
 }));
 
 const Title = styled(ElementDiv)({
-  flex: 1,
-  minWidth: "20%",
+  // flex: 1,
+  justifyContent: "flex-start",
+  minWidth: "10%",
 
   fontSize: "5rem",
   fontWeight: "Bold",
 });
 
 const NavBar = styled(ElementDiv)({
-  flex: 7,
+  flex: 1,
+  justifyContent: "center",
 
   gap: "5rem",
 
   fontSize: "2rem",
   fontWeight: 400,
-});
-
-const BasketArea = styled(ElementDiv)({
-  flex: 1,
-  minWidth: "20%",
-
-  gap: "1.5rem",
-  fontSize: "3rem",
-  fontWeight: 200,
 });
 
 const NavBarElement = styled.div((props) => ({
@@ -44,7 +37,29 @@ const NavBarElement = styled.div((props) => ({
   },
 }));
 
-const Header = ({ className }: BaseProps) => {
+const BasketArea = styled(ElementDiv)({
+  // flex: 1,
+  justifyContent: "flex-end",
+
+  minWidth: "10%",
+
+  fontSize: "5rem",
+});
+
+const BasketElement = styled(IoIosBasket)((props) => ({
+  transition: "all 0.1s ease-in-out",
+
+  "&:hover": {
+    color: props.theme.colours.red,
+    transform: "scale(1.05)",
+  },
+}));
+
+interface HeaderProps extends BaseProps {
+  count: number;
+}
+
+const Header = ({ className, count }: HeaderProps) => {
   return (
     <div className={className}>
       <Title>Pick'd</Title>
@@ -54,8 +69,8 @@ const Header = ({ className }: BaseProps) => {
         <NavBarElement>Contact</NavBarElement>
       </NavBar>
       <BasketArea>
-        <NavBarElement>Basket</NavBarElement>
-        <NavBarElement>Search</NavBarElement>
+        <BasketElement></BasketElement>
+        {count}
       </BasketArea>
     </div>
   );
@@ -67,7 +82,7 @@ export const StyledHeader = styled(Header)((props) => ({
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-between",
-  padding: "0 20px",
+  padding: "0 50px",
 
   backgroundColor: props.theme.colours.brown,
 }));
