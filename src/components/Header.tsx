@@ -17,14 +17,6 @@ const Title = styled(ElementDiv)({
   fontWeight: "Bold",
 });
 
-const NavBarElement = styled.div((props) => ({
-  transition: "color 0.1s ease-in-out",
-
-  "&:hover": {
-    color: props.theme.colours.red,
-  },
-}));
-
 const NavBar = styled(ElementDiv)({
   flex: 7,
 
@@ -42,6 +34,15 @@ const BasketArea = styled(ElementDiv)({
   fontSize: "3rem",
   fontWeight: 200,
 });
+
+const NavBarElement = styled.div((props) => ({
+  transition: "all 0.1s ease-in-out",
+
+  "&:hover": {
+    color: props.theme.colours.red,
+    transform: "scale(1.05)",
+  },
+}));
 
 const Header = ({ className }: BaseProps) => {
   return (

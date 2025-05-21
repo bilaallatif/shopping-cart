@@ -18,7 +18,7 @@ const theme: DefaultTheme = {
   },
   fonts: {
     primary: "Playwrite DK Loopet, cursive",
-    secondary: "Roboto, sans-serif",
+    secondary: "Playwrite US Modern, cursive",
   },
 };
 
