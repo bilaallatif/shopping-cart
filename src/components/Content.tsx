@@ -192,10 +192,9 @@ export const Content = styled(({ className }: BaseProps) => {
     </div>
   );
 })({
-  flex: 10,
+  height: "100%",
 
   display: "flex",
   flexDirection: "column",
-  // justifyContent: "space-between",
   alignItems: "center",
 });

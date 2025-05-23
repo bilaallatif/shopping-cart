@@ -15,7 +15,9 @@ const BasePage = ({ className }: BaseProps) => {
           (previousValue, currentValue) => previousValue + currentValue,
         )}
       ></StyledHeader>
-      <Outlet context={{ items, setItems }}></Outlet>
+      <div style={{ flex: 10 }}>
+        <Outlet context={{ items, setItems }}></Outlet>
+      </div>
       <StyledFooter></StyledFooter>
     </div>
   );
