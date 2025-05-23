@@ -10,7 +10,6 @@ export const ElementDiv = styled.div((props) => ({
 }));
 
 const Title = styled(ElementDiv)({
-  // flex: 1,
   justifyContent: "flex-start",
   minWidth: "10%",
 
@@ -38,12 +37,19 @@ const NavBarElement = styled.div((props) => ({
 }));
 
 const BasketArea = styled(ElementDiv)({
-  // flex: 1,
   justifyContent: "flex-end",
 
   minWidth: "10%",
 
   fontSize: "5rem",
+});
+
+const Basket = styled.div({
+  height: "100%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  position: "relative",
 });
 
 const BasketElement = styled(IoIosBasket)((props) => ({
@@ -53,6 +59,22 @@ const BasketElement = styled(IoIosBasket)((props) => ({
     color: props.theme.colours.red,
     transform: "scale(1.05)",
   },
+}));
+
+const BasketBadge = styled.div((props) => ({
+  position: "absolute",
+  bottom: "10px",
+  left: "60px",
+  color: props.theme.colours.red,
+  fontSize: "1.25rem",
+  backgroundColor: props.theme.colours.white,
+  borderRadius: "50%",
+  width: "2rem",
+  height: "2rem",
+
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 }));
 
 interface HeaderProps extends BaseProps {
@@ -69,8 +91,10 @@ const Header = ({ className, count }: HeaderProps) => {
         <NavBarElement>Contact</NavBarElement>
       </NavBar>
       <BasketArea>
-        <BasketElement></BasketElement>
-        {count}
+        <Basket>
+          <BasketElement></BasketElement>
+          <BasketBadge>{count}</BasketBadge>
+        </Basket>
       </BasketArea>
     </div>
   );

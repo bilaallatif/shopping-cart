@@ -17,8 +17,9 @@ const theme: DefaultTheme = {
     white: "#EEEEEE",
   },
   fonts: {
-    primary: "Playwrite DK Loopet, cursive",
+    primary: "Playwrite US Modern, cursive",
     secondary: "Playwrite US Modern, cursive",
+    // secondary: "Playwrite US Modern, cursive",
   },
 };
 
