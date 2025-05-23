@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import type { BaseProps } from "../main.tsx";
 import { IoIosBasket } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 export const ElementDiv = styled.div((props) => ({
   display: "flex",
@@ -27,7 +28,9 @@ const NavBar = styled(ElementDiv)({
   fontWeight: 400,
 });
 
-const NavBarElement = styled.div((props) => ({
+const NavBarElement = styled(Link)((props) => ({
+  textDecoration: "none",
+  color: "inherit",
   transition: "all 0.1s ease-in-out",
 
   "&:hover": {
@@ -51,15 +54,6 @@ const Basket = styled.div({
   justifyContent: "center",
   position: "relative",
 });
-
-const BasketElement = styled(IoIosBasket)((props) => ({
-  transition: "all 0.1s ease-in-out",
-
-  "&:hover": {
-    color: props.theme.colours.red,
-    transform: "scale(1.05)",
-  },
-}));
 
 const BasketBadge = styled.div((props) => ({
   position: "absolute",
@@ -86,13 +80,15 @@ const Header = ({ className, count }: HeaderProps) => {
     <div className={className}>
       <Title>Pick'd</Title>
       <NavBar>
-        <NavBarElement>Home</NavBarElement>
-        <NavBarElement>Shop</NavBarElement>
-        <NavBarElement>Contact</NavBarElement>
+        <NavBarElement to="/home">Home</NavBarElement>
+        <NavBarElement to="/shop">Shop</NavBarElement>
+        <NavBarElement to="/contact">Contact</NavBarElement>
       </NavBar>
       <BasketArea>
         <Basket>
-          <BasketElement></BasketElement>
+          <NavBarElement to="/cart">
+            <IoIosBasket></IoIosBasket>
+          </NavBarElement>
           <BasketBadge>{count}</BasketBadge>
         </Basket>
       </BasketArea>
