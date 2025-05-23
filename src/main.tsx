@@ -1,8 +1,9 @@
 import { type ReactNode, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { StyledBasePage } from "./components/BasePage.tsx";
 import "./main.css";
 import { type DefaultTheme, ThemeProvider } from "styled-components";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes.tsx";
 
 export interface BaseProps {
   className?: string;
@@ -26,7 +27,7 @@ const theme: DefaultTheme = {
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
-      <StyledBasePage></StyledBasePage>
+      <RouterProvider router={router}></RouterProvider>
     </ThemeProvider>
   </StrictMode>,
 );

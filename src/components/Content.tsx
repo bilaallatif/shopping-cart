@@ -1,6 +1,7 @@
 import type { BaseProps } from "../main.tsx";
 import { styled } from "styled-components";
 import * as React from "react";
+import { useOutletContext } from "react-router-dom";
 // import apple from "../assets/apple.jpg";
 
 const Banner = styled.div((props) => ({
@@ -158,41 +159,39 @@ const Item = ({ addCount }: ItemProps) => {
   );
 };
 
-interface ContentProps extends BaseProps {
+interface ContentContext {
   items: number[];
   setItems: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
-export const Content = styled(
-  ({ className, items, setItems }: ContentProps) => {
-    return (
-      <div className={className}>
-        <Banner>
-          <div>
-            Welcome to Pick'd — Where Fresh Apples Meet Family Tradition.
-          </div>
-          <div>Hand-Picked, Sun-Kissed, and Grown with Love.</div>
-        </Banner>
-        <ItemsList>
-          {items.map((_value, index) => (
-            <Item
-              key={index}
-              addCount={(added: number) => {
-                const newItems = [...items];
-                newItems[index] += added;
-                console.log(newItems);
-                setItems(newItems);
-              }}
-            ></Item>
-          ))}
-        </ItemsList>
-        <Banner>
-          <div>Warning: May Cause Spontaneous Apple-Picking Joy.</div>
-        </Banner>
-      </div>
-    );
-  },
-)({
+export const Content = styled(({ className }: BaseProps) => {
+  const { items, setItems }: ContentContext = useOutletContext();
+
+  return (
+    <div className={className}>
+      <Banner>
+        <div>Welcome to Pick'd — Where Fresh Apples Meet Family Tradition.</div>
+        <div>Hand-Picked, Sun-Kissed, and Grown with Love.</div>
+      </Banner>
+      <ItemsList>
+        {items.map((_value, index) => (
+          <Item
+            key={index}
+            addCount={(added: number) => {
+              const newItems = [...items];
+              newItems[index] += added;
+              console.log(newItems);
+              setItems(newItems);
+            }}
+          ></Item>
+        ))}
+      </ItemsList>
+      <Banner>
+        <div>Warning: May Cause Spontaneous Apple-Picking Joy.</div>
+      </Banner>
+    </div>
+  );
+})({
   flex: 10,
 
   display: "flex",

@@ -2,8 +2,8 @@ import type { BaseProps } from "../main.tsx";
 import { styled } from "styled-components";
 import { StyledHeader } from "./Header.tsx";
 import { StyledFooter } from "./Footer.tsx";
-import { Content } from "./Content.tsx";
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
 const BasePage = ({ className }: BaseProps) => {
   const [items, setItems] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
@@ -15,7 +15,7 @@ const BasePage = ({ className }: BaseProps) => {
           (previousValue, currentValue) => previousValue + currentValue,
         )}
       ></StyledHeader>
-      <Content items={items} setItems={setItems}></Content>
+      <Outlet context={{ items, setItems }}></Outlet>
       <StyledFooter></StyledFooter>
     </div>
   );
