@@ -32,7 +32,7 @@ const ItemsList = styled.div({
 const Card = styled.div((props) => ({
   width: "100%",
 
-  borderRadius: "5%",
+  borderRadius: "30px",
   backgroundColor: props.theme.colours.white,
   transition: "transform 0.1s",
   "&:hover": {

@@ -4,7 +4,7 @@ import type { BaseProps } from "../main.tsx";
 const Info = styled.div((props) => ({
   height: "50%",
   width: "50%",
-  borderRadius: "5%",
+  borderRadius: "100px",
   backgroundColor: props.theme.colours.red,
   color: props.theme.colours.white,
   fontSize: "1.5rem",
