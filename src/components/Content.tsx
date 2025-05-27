@@ -159,13 +159,13 @@ const Item = ({ addCount }: ItemProps) => {
   );
 };
 
-interface ContentContext {
+export interface ItemContext {
   items: number[];
   setItems: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 export const Content = styled(({ className }: BaseProps) => {
-  const { items, setItems }: ContentContext = useOutletContext();
+  const { items, setItems } = useOutletContext<ItemContext>();
 
   return (
     <div className={className}>
